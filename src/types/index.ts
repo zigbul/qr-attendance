@@ -16,3 +16,10 @@ export interface IAttendanceRecord {
   studentId: string;
   timestamp: string;
 }
+
+export interface ReportRow {
+  Class: string;
+  Date: string;
+  Student: string;
+  Timestamp: string;
+}
