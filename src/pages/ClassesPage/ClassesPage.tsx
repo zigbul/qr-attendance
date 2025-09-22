@@ -3,6 +3,7 @@ import { QRCodeSVG } from 'qrcode.react';
 
 import { type IClassItem } from '../../types';
 import useStore from '../../store';
+import { Link } from 'react-router-dom';
 
 const ClassesPage = () => {
   const mockClasses = useStore((state) => state.mockClasses);
@@ -30,6 +31,8 @@ const ClassesPage = () => {
           />
         </div>
       )}
+
+      <Link to="/reports">Go to Reports</Link>
     </section>
   );
 };
