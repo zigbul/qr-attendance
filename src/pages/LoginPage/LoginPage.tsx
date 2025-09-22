@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import type { User } from '../../types';
+import type { IUser } from '../../types';
 import useStore from '../../store';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const userbase: User[] = useStore((state) => state.database);
+  const mockUsers: IUser[] = useStore((state) => state.mockUsers);
   const [authError, setAuthError] = useState<boolean>(false);
 
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const LoginPage = () => {
     const formData = new FormData(form);
     const credentials = Object.fromEntries(formData);
 
-    const user: User | undefined = userbase.find(
+    const user: IUser | undefined = mockUsers.find(
       (user) => user.login == credentials.login && user.password == credentials.password,
     );
 

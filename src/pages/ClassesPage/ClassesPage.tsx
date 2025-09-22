@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 
-import { type ClassItem } from '../../types';
-
-const mockClasses: ClassItem[] = [
-  { id: '1', title: 'JavaScript - Lecture 1', date: '2025-09-21' },
-  { id: '2', title: 'GoLang - Lecture 2', date: '2025-09-22' },
-];
+import { type IClassItem } from '../../types';
+import useStore from '../../store';
 
 const ClassesPage = () => {
-  const [selectedClass, setSelectedClass] = useState<ClassItem | null>(null);
+  const mockClasses = useStore((state) => state.mockClasses);
+  const [selectedClass, setSelectedClass] = useState<IClassItem | null>(null);
 
   return (
     <section>

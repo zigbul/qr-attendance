@@ -1,26 +1,34 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import { type User } from '../types';
+import { type IUser, type IClassItem, type IAttendanceRecord } from '../types';
 
 interface StoreState {
-  currentUser: User | null;
-  database: User[];
+  currentUser: IUser | null;
+  mockUsers: IUser[];
+  mockClasses: IClassItem[];
+  attendances: IAttendanceRecord[];
 }
 
 interface StoreActions {
-  setCurrentUser: (user: User) => void;
+  setCurrentUser: (user: IUser) => void;
   removeCurrentUser: () => void;
+  addAttendance: (attendance: IAttendanceRecord) => void;
 }
 
 type Store = StoreState & StoreActions;
 
 const initialState: StoreState = {
   currentUser: null,
-  database: [
-    { login: 'student', password: 'student', type: 'student' },
-    { login: 'teacher', password: 'teacher', type: 'teacher' },
+  mockUsers: [
+    { id: '1', login: 'student', password: 'student', type: 'student' },
+    { id: '2', login: 'teacher', password: 'teacher', type: 'teacher' },
   ],
+  mockClasses: [
+    { id: '1', title: 'JavaScript - Lecture 1', date: '2025-09-21' },
+    { id: '2', title: 'GoLang - Lecture 2', date: '2025-09-22' },
+  ],
+  attendances: [],
 };
 
 const useStore = create<Store>()(
@@ -28,6 +36,8 @@ const useStore = create<Store>()(
     ...initialState,
     setCurrentUser: (user) => set(() => ({ currentUser: user })),
     removeCurrentUser: () => set(() => ({ currentUser: null })),
+    addAttendance: (attendance) =>
+      set((state) => ({ attendances: [...state.attendances, attendance] })),
   })),
 );
 
