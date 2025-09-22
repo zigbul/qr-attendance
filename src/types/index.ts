@@ -3,3 +3,9 @@ export interface User {
   password: string;
   type: 'student' | 'teacher';
 }
+
+export interface ClassItem {
+  id: string;
+  title: string;
+  date: string;
+}
