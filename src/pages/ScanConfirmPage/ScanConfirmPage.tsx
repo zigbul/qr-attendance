@@ -1,4 +1,6 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import './ScanConfirmPage.css';
 import useStore from '../../store';
 import type { IClassItem } from '../../types';
 
@@ -20,7 +22,15 @@ const ScanConfirmPage = () => {
   );
 
   if (!cls) {
-    return <h1>Invalid QR code!</h1>;
+    return (
+      <section className="scan-confirm-page container">
+        <div className="scan-confirm-page__error-card">
+          <h1 className="scan-page__error-message" style={{ color: 'var(--color-error)' }}>
+            Invalid QR code!
+          </h1>
+        </div>
+      </section>
+    );
   }
 
   const handleAttendance = () => {
@@ -46,13 +56,24 @@ const ScanConfirmPage = () => {
   };
 
   return (
-    <section>
-      <h1>Scan Result</h1>
-      <p>
-        You are attending: <b>{cls.title}</b> ({cls.date})
-      </p>
-      <button onClick={handleAttendance}>Confirm Attendance</button>
-      <button onClick={handleExit}>Выйти</button>
+    <section className="scan-confirm-page container">
+      <div className="scan-confirm-page__card card">
+        <h1 className="scan-confirm-page__title">Scan Result</h1>
+        <p className="scan-confirm-page__info">
+          You are attending:
+          <br /> <b>{cls.title}</b>
+          <br />
+          <span className="scan-confirm-page__info-date">{cls.date}</span>
+        </p>
+        <div className="scan-confirm-page__buttons-wrapper">
+          <button className="btn btn-primary" onClick={handleAttendance}>
+            Confirm Attendance
+          </button>
+          <button className="btn btn-secondary" onClick={handleExit}>
+            Logout
+          </button>
+        </div>
+      </div>
     </section>
   );
 };
