@@ -11,7 +11,7 @@ interface StoreState {
 }
 
 interface StoreActions {
-  setCurrentUser: (user: IUser) => void;
+  setCurrentUser: (user: IUser | null) => void;
   removeCurrentUser: () => void;
   addAttendance: (attendance: IAttendanceRecord) => void;
 }

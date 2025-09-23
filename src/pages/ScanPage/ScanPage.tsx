@@ -1,51 +1,33 @@
-import { useSearchParams } from 'react-router-dom';
-import useStore from '../../store';
-import type { IClassItem } from '../../types';
+import { useZxing } from 'react-zxing';
+import { useNavigate } from 'react-router-dom';
 
 const ScanPage = () => {
-  const [params] = useSearchParams();
-  const classId = params.get('classId');
-  const mockClasses = useStore((state) => state.mockClasses);
+  const navigate = useNavigate();
 
-  const currentUser = useStore((state) => state.currentUser);
-  const addAttendance = useStore((state) => state.addAttendance);
+  const { ref } = useZxing({
+    onDecodeResult(result) {
+      try {
+        const url = new URL(result.getText());
+        const classId = url.searchParams.get('classId');
 
-  const cls = mockClasses.find((c: IClassItem) => c.id === classId);
-
-  const hasAttended = useStore((state) =>
-    state.attendances.some(
-      (attendance) => attendance.classId === classId && attendance.studentId === currentUser?.id,
-    ),
-  );
-
-  if (!cls) {
-    return <h1>Invalid QR code!</h1>;
-  }
-
-  const handleAttendance = () => {
-    if (!currentUser) return;
-
-    if (hasAttended) {
-      alert('You already recorded attendance for this class.');
-      return;
-    }
-
-    addAttendance({
-      classId: cls.id,
-      studentId: currentUser.id,
-      timestamp: new Date().toISOString(),
-    });
-
-    alert('Attendance recorded successfully!');
-  };
+        if (classId) {
+          navigate(`/scan/confirm?classId=${classId}`);
+        } else {
+          alert('Invalid QR code!');
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          alert(`Error: ${error.message}`);
+        }
+      }
+    },
+  });
 
   return (
     <section>
-      <h1>Scan Result</h1>
-      <p>
-        You are attending: <b>{cls.title}</b> ({cls.date})
-      </p>
-      <button onClick={handleAttendance}>Confirm Attendance</button>
+      <h1>Scan QR Code</h1>
+      <video ref={ref} style={{ width: '100%', maxWidth: '400px', border: '1px solid #ccc' }} />
+      <p>Point your camera at QR code to mark attendance.</p>
     </section>
   );
 };

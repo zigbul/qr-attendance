@@ -5,6 +5,7 @@ import ClassesPage from './pages/ClassesPage';
 import ScanPage from './pages/ScanPage';
 import ReportsPage from './pages/ReportsPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import ScanConfirmPage from './pages/ScanConfirmPage';
 
 function App() {
   return (
@@ -24,6 +25,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={['student']}>
               <ScanPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/scan/confirm"
+          element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <ScanConfirmPage />
             </ProtectedRoute>
           }
         />
