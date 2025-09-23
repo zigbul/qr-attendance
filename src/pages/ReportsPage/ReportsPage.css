@@ -1,0 +1,58 @@
+.reports-page {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.reports-page__title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.reports-page__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.reports-page__attendance-card {
+  background: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.reports-page__attendance-card-title {
+  margin-bottom: 1rem;
+}
+
+.reports-page__attendance-card-date,
+.reports-page__attendance-card-empty-text {
+  color: var(--color-text-light);
+}
+
+.reports-page__attendance-table {
+  width: 100%;
+}
+
+.reports-page__attendance-table-row {
+  background: var(--color-muted);
+  text-align: left;
+}
+
+.reports-page__attendance-table-header-cell,
+.reports-page__attendance-table-body-cell {
+  padding: 0.5rem;
+}
+
+.reports-page__attendance-table-body-cell {
+  border-top: 1px solid #ddd;
+}
+
+.reports-page__back-button {
+  align-self: center;
+}

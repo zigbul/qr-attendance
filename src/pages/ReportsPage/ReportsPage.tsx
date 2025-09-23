@@ -1,13 +1,17 @@
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { useNavigate } from 'react-router-dom';
 
-import useStore from '../../store';
+import './ReportsPage.css';
 import type { ReportRow } from '../../types';
+import useStore from '../../store';
 
 const ReportsPage = () => {
   const mockClasses = useStore((state) => state.mockClasses);
   const attendances = useStore((state) => state.attendances);
   const mockUsers = useStore((state) => state.mockUsers);
+
+  const navigate = useNavigate();
 
   const students = mockUsers.filter((user) => user.type === 'student');
 
@@ -47,36 +51,61 @@ const ReportsPage = () => {
   };
 
   return (
-    <section>
-      <h1>Attendance Reports</h1>
-      <button onClick={exportToExcel}>Export to Excel</button>
+    <section className="reports-page container">
+      <h1 className="reports-page__title">Attendance Reports</h1>
 
-      {mockClasses.map((cls) => {
-        const classAttendances = attendances.filter((attendance) => attendance.classId === cls.id);
+      <button className="reports-page__button btn btn-primary" onClick={exportToExcel}>
+        Export to Excel
+      </button>
 
-        return (
-          <div key={cls.id}>
-            <h2>
-              {cls.title} ({cls.date})
-            </h2>
-            {classAttendances.length === 0 ? (
-              <p>No attendances recorded.</p>
-            ) : (
-              <ul>
-                {classAttendances.map((attendance) => {
-                  const student = students.find((student) => student.id === attendance.studentId);
+      <div className="reports-page__body">
+        {mockClasses.map((cls) => {
+          const classAttendances = attendances.filter(
+            (attendance) => attendance.classId === cls.id,
+          );
 
-                  return (
-                    <li key={attendance.studentId}>
-                      {student?.login} - {new Date(attendance.timestamp).toLocaleString()}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
-        );
-      })}
+          return (
+            <div className="reports-page__attendance-card" key={cls.id}>
+              <h2 className="reports-page__attendance-card-title">
+                {cls.title} <span className="reports-page__attendance-card-date">({cls.date})</span>
+              </h2>
+              {classAttendances.length === 0 ? (
+                <p className="reports-page__attendace-card-empty-text">No attendances recorded.</p>
+              ) : (
+                <table className="reports-page__attendance-table">
+                  <thead>
+                    <tr className="reports-page__attendance-table-row">
+                      <th className="reports-page__attendance-table-header-cell">Student</th>
+                      <th className="reports-page__attendance-table-header-cell">Timestamp</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {classAttendances.map((attendance) => {
+                      const student = students.find((s) => s.id === attendance.studentId);
+
+                      return (
+                        <tr key={attendance.studentId}>
+                          <td className="reports-page__attendance-table-body-cell">
+                            {student?.login}
+                          </td>
+                          <td className="reports-page__attendance-table-body-cell">
+                            {new Date(attendance.timestamp).toLocaleString()}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          );
+        })}
+        <button
+          onClick={() => navigate('/classes')}
+          className="reports-page__back-button btn btn-secondary">
+          Back to Classes
+        </button>
+      </div>
     </section>
   );
 };

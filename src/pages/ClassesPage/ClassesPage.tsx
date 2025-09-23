@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './ClassesPage.css';
 import { type IClassItem } from '../../types';
@@ -9,10 +9,20 @@ import useStore from '../../store';
 const ClassesPage = () => {
   const mockClasses = useStore((state) => state.mockClasses);
   const [selectedClass, setSelectedClass] = useState<IClassItem | null>(null);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    useStore.getState().setCurrentUser(null);
+    navigate('/login');
+  };
 
   return (
     <section className="classes-page">
       <h1 className="classes-page__title">Welcome to Classes page!</h1>
+
+      <Link className="classes-page__link" to="/reports">
+        Go to Reports
+      </Link>
 
       <ul className="classes-page__list">
         {mockClasses.map((cls) => (
@@ -40,9 +50,9 @@ const ClassesPage = () => {
         </div>
       )}
 
-      <Link className="classes-page__link" to="/reports">
-        Go to Reports
-      </Link>
+      <button className="classes-page__logout-button btn btn-secondary" onClick={handleLogout}>
+        Logout
+      </button>
     </section>
   );
 };
