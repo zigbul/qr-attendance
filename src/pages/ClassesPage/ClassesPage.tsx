@@ -1,30 +1,38 @@
 import { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import { Link } from 'react-router-dom';
 
+import './ClassesPage.css';
 import { type IClassItem } from '../../types';
 import useStore from '../../store';
-import { Link } from 'react-router-dom';
 
 const ClassesPage = () => {
   const mockClasses = useStore((state) => state.mockClasses);
   const [selectedClass, setSelectedClass] = useState<IClassItem | null>(null);
 
   return (
-    <section>
-      <h1>Welcome to Classes page!</h1>
+    <section className="classes-page">
+      <h1 className="classes-page__title">Welcome to Classes page!</h1>
 
-      <ul>
+      <ul className="classes-page__list">
         {mockClasses.map((cls) => (
-          <li key={cls.id}>
-            {cls.title} ({cls.date}){' '}
-            <button onClick={() => setSelectedClass(cls)}>Generate QRCode</button>
+          <li className="classes-page__list-item" key={cls.id}>
+            <div>
+              <h3 className="classes-page__class-title">{cls.title}</h3>
+              <p className="classes-page__class-date">{cls.date}</p>
+            </div>
+            <button
+              className="classes-page__button btn btn-primary"
+              onClick={() => setSelectedClass(cls)}>
+              Generate QRCode
+            </button>
           </li>
         ))}
       </ul>
 
       {selectedClass && (
-        <div>
-          <h2>QR for {selectedClass.title}</h2>
+        <div className="classes-page__qrcode card">
+          <h2 className="classes-page__qrcode-title">QR for {selectedClass.title}</h2>
           <QRCodeSVG
             value={`${window.location.origin}/scan?classId=${selectedClass.id}`}
             size={200}
@@ -32,7 +40,9 @@ const ClassesPage = () => {
         </div>
       )}
 
-      <Link to="/reports">Go to Reports</Link>
+      <Link className="classes-page__link" to="/reports">
+        Go to Reports
+      </Link>
     </section>
   );
 };
