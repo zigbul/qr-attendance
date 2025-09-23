@@ -1,0 +1,36 @@
+.scan-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.scan-page__title {
+  margin-bottom: 1rem;
+}
+
+.scan-page__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  background: var(--color-surface);
+}
+
+.scan-page__scaner {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  border: 3px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.scan-page__hint {
+  margin-top: 1rem;
+  color: var(--color-text-light);
+}

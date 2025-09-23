@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import './LoginPage.css';
 import type { IUser } from '../../types';
 import useStore from '../../store';
 import { useNavigate } from 'react-router-dom';
@@ -37,24 +38,42 @@ const LoginPage = () => {
   };
 
   return (
-    <section>
-      <h1>Welcome to login page!</h1>
+    <section className="login-page container">
+      <div className="login-page__card card">
+        <h1 className="login-page__title">Login</h1>
 
-      {authError && <p style={{ color: 'red' }}>Invalid login or password</p>}
+        {authError && <p className="login-page__error-message">Invalid login or password</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <p>Login</p>
-          <input type="text" placeholder="Enter login" name="login" />
-        </div>
-        <div>
-          <p>Password</p>
-          <input type="password" placeholder="Enter password" name="password" />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+        <form className="login-page__form" onSubmit={handleSubmit}>
+          <div>
+            <label className="login-page__form-label" htmlFor="login">
+              Login
+            </label>
+            <input
+              className="login-page__form-input"
+              type="text"
+              placeholder="Enter login"
+              name="login"
+            />
+          </div>
+          <div>
+            <label className="login-page__form-label" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="login-page__form-input"
+              type="password"
+              placeholder="Enter password"
+              name="password"
+            />
+          </div>
+          <div>
+            <button className="login-page__form-button btn btn-primary" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 };

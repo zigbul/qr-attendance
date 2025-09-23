@@ -1,6 +1,8 @@
 import { useZxing } from 'react-zxing';
 import { useNavigate } from 'react-router-dom';
 
+import './ScanPage.css';
+
 const ScanPage = () => {
   const navigate = useNavigate();
 
@@ -24,10 +26,12 @@ const ScanPage = () => {
   });
 
   return (
-    <section>
-      <h1>Scan QR Code</h1>
-      <video ref={ref} style={{ width: '100%', maxWidth: '400px', border: '1px solid #ccc' }} />
-      <p>Point your camera at QR code to mark attendance.</p>
+    <section className="scan-page container">
+      <h1 className="scan-page__title">Scan QR Code</h1>
+      <div className="scan-page__card card">
+        <video className="scan-page__scaner" ref={ref} />
+        <p className="scan-page__hint">Point your camera at QR code to mark attendance.</p>
+      </div>
     </section>
   );
 };
