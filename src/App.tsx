@@ -15,7 +15,7 @@ function App() {
         <Route
           path="/classes"
           element={
-            <ProtectedRoute allowedRoles={['teacher']}>
+            <ProtectedRoute allowedRoles={['Teacher']}>
               <ClassesPage />
             </ProtectedRoute>
           }
@@ -23,7 +23,7 @@ function App() {
         <Route
           path="/scan"
           element={
-            <ProtectedRoute allowedRoles={['student']}>
+            <ProtectedRoute allowedRoles={['Student']}>
               <ScanPage />
             </ProtectedRoute>
           }
@@ -31,7 +31,7 @@ function App() {
         <Route
           path="/scan/confirm"
           element={
-            <ProtectedRoute allowedRoles={['student']}>
+            <ProtectedRoute allowedRoles={['Student']}>
               <ScanConfirmPage />
             </ProtectedRoute>
           }
@@ -39,7 +39,7 @@ function App() {
         <Route
           path="/reports"
           element={
-            <ProtectedRoute allowedRoles={['teacher']}>
+            <ProtectedRoute allowedRoles={['Teacher']}>
               <ReportsPage />
             </ProtectedRoute>
           }

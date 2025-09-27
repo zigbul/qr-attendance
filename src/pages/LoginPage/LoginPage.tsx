@@ -1,39 +1,48 @@
 import { useState } from 'react';
 
 import './LoginPage.css';
-import type { IUser } from '../../types';
+import type { ILoginDto, IUserResponse } from '../../types';
 import useStore from '../../store';
 import { useNavigate } from 'react-router-dom';
+import { AccountApi } from '../../api';
 
 const LoginPage = () => {
-  const mockUsers: IUser[] = useStore((state) => state.mockUsers);
   const [authError, setAuthError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const setCurrentUser = useStore((state) => state.setCurrentUser);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
-    const credentials = Object.fromEntries(formData);
 
-    const user: IUser | undefined = mockUsers.find(
-      (user) => user.login == credentials.login && user.password == credentials.password,
-    );
+    const credentials: ILoginDto = {
+      login: formData.get('login') as string,
+      password: formData.get('password') as string,
+    };
 
-    if (!user) {
-      setAuthError(true);
-    } else {
-      useStore.getState().setCurrentUser(user);
+    setLoading(true);
+    setAuthError(false);
 
-      if (user.type === 'student') {
+    try {
+      const user: IUserResponse = await AccountApi.login(credentials);
+      console.log(user);
+      setCurrentUser(user);
+
+      if (user.role === 'Student') {
         navigate('/scan');
-      }
-
-      if (user.type === 'teacher') {
+      } else if (user.role === 'Teacher') {
         navigate('/classes');
       }
+    } catch (error) {
+      console.error('Login error:', error);
+      setAuthError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,8 +77,11 @@ const LoginPage = () => {
             />
           </div>
           <div>
-            <button className="login-page__form-button btn btn-primary" type="submit">
-              Submit
+            <button
+              className="login-page__form-button btn btn-primary"
+              type="submit"
+              disabled={loading}>
+              {loading ? 'Loggin in...' : 'Submit'}
             </button>
           </div>
         </form>

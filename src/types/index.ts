@@ -58,5 +58,5 @@ export interface IMarkAttendanceDto {
 export interface IUserResponse {
   id: string;
   login: string;
-  type: Student | Teacher;
+  role: Student | Teacher;
 }

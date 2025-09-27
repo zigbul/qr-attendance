@@ -15,40 +15,40 @@ const ReportsPage = () => {
 
   const students = mockUsers.filter((user) => user.type === 'student');
 
-  const exportToExcel = () => {
-    const rows: ReportRow[] = [];
+  //const exportToExcel = () => {
+  const rows: ReportRow[] = [];
 
-    mockClasses.forEach((cls) => {
-      const classAttendances = attendances.filter((attendance) => attendance.classId === cls.id);
+  mockClasses.forEach((cls) => {
+    const classAttendances = attendances.filter((attendance) => attendance.classId === cls.id);
 
-      if (classAttendances.length === 0) {
+    if (classAttendances.length === 0) {
+      rows.push({
+        Class: cls.title,
+        Date: cls.date,
+        Student: '-',
+        Timestamp: '-',
+      });
+    } else {
+      classAttendances.forEach((attendance) => {
+        const student = students.find((student) => student.id === attendance.studentId);
+
         rows.push({
           Class: cls.title,
           Date: cls.date,
-          Student: '-',
-          Timestamp: '-',
+          Student: student?.login ?? 'Unknown',
+          Timestamp: new Date(attendance.timestamp).toLocaleString(),
         });
-      } else {
-        classAttendances.forEach((attendance) => {
-          const student = students.find((student) => student.id === attendance.studentId);
+      });
+    }
+  });
 
-          rows.push({
-            Class: cls.title,
-            Date: cls.date,
-            Student: student?.login ?? 'Unknown',
-            Timestamp: new Date(attendance.timestamp).toLocaleString(),
-          });
-        });
-      }
-    });
+  const worksheet = XLSX.utils.json_to_sheet(rows);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Attendance Report');
+  const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-    const worksheet = XLSX.utils.json_to_sheet(rows);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Attendance Report');
-    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    saveAs(new Blob([excelBuffer], { type: 'application/octet-stream' }), 'attendance_report.xlsx');
-  };
+  saveAs(new Blob([excelBuffer], { type: 'application/octet-stream' }), 'attendance_report.xlsx');
+  //};
 
   return (
     <section className="reports-page container">
