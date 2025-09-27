@@ -30,7 +30,6 @@ const LoginPage = () => {
 
     try {
       const user: IUserResponse = await AccountApi.login(credentials);
-      console.log(user);
       setCurrentUser(user);
 
       if (user.role === 'Student') {

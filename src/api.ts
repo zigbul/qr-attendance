@@ -44,6 +44,8 @@ export const LessonApi = {
     link.download = `attendance_lesson_${lessonId}.xlsx`;
     link.click();
   },
+
+  getLessons: () => api.get('/lesson/list').then((res) => res.data),
 };
 
 export const AttendanceApi = {

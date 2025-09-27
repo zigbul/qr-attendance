@@ -10,9 +10,12 @@ export interface IUser {
 }
 
 export interface IClassItem {
-  id: string;
-  title: string;
+  id: number;
   date: string;
+  title: string;
+  qrToken?: string;
+  tokenExpiration?: Date;
+  isActive: boolean;
 }
 
 export interface IAttendanceRecord {
