@@ -1,39 +1,35 @@
 import { useState } from 'react';
 
 import './LoginPage.css';
-import type { IUser } from '../../types';
-import useStore from '../../store';
-import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const mockUsers: IUser[] = useStore((state) => state.mockUsers);
   const [authError, setAuthError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const navigate = useNavigate();
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
     const credentials = Object.fromEntries(formData);
 
-    const user: IUser | undefined = mockUsers.find(
-      (user) => user.login == credentials.login && user.password == credentials.password,
-    );
+    const { login, password } = credentials as { login: string; password: string };
 
-    if (!user) {
+    try {
+      await fetch('http://45.90.216.217:80/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ login, password }),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+    } catch (e) {
+      console.error('Error during authentication:', e);
       setAuthError(true);
-    } else {
-      useStore.getState().setCurrentUser(user);
-
-      if (user.type === 'student') {
-        navigate('/scan');
-      }
-
-      if (user.type === 'teacher') {
-        navigate('/classes');
-      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,8 +64,11 @@ const LoginPage = () => {
             />
           </div>
           <div>
-            <button className="login-page__form-button btn btn-primary" type="submit">
-              Submit
+            <button
+              className="login-page__form-button btn btn-primary"
+              type="submit"
+              disabled={loading}>
+              {loading ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </form>
