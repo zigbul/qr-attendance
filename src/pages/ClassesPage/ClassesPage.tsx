@@ -92,10 +92,7 @@ const ClassesPage = () => {
         selectedClass && (
           <div className="classes-page__qrcode card">
             <h2 className="classes-page__qrcode-title">QR for {selectedClass.title}</h2>
-            <QRCodeSVG
-              value={`${window.location.origin}/scan?classId=${selectedClass.id}`}
-              size={200}
-            />
+            <img src={qrCode} alt="QR Code" width={200} height={200} />
           </div>
         )
       )}
