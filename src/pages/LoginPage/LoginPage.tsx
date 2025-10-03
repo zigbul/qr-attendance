@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './LoginPage.css';
 
 const LoginPage = () => {
   const [authError, setAuthError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,13 +20,24 @@ const LoginPage = () => {
     const { login, password } = credentials as { login: string; password: string };
 
     try {
-      await fetch('http://45.90.216.217:80/auth', {
+      const response = await fetch('http://45.90.216.217:80/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ login, password }),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+      });
+
+      const data = await response.json();
+
+      console.log(data);
+      console.log(data.role === 'Teacher');
+
+      if (data.role === 'Teacher') {
+        navigate('/classes');
+      }
+
+      if (data.role === 'Student') {
+        navigate('/scan');
+      }
     } catch (e) {
       console.error('Error during authentication:', e);
       setAuthError(true);
