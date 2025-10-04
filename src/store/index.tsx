@@ -21,8 +21,8 @@ type Store = StoreState & StoreActions;
 const initialState: StoreState = {
   currentUser: null,
   mockUsers: [
-    { id: '1', login: 'student', password: 'student', type: 'student' },
-    { id: '2', login: 'teacher', password: 'teacher', type: 'teacher' },
+    { id: '1', fullName: 'student', role: 'Student' },
+    { id: '2', fullName: 'teacher', role: 'Teacher' },
   ],
   mockClasses: [
     { id: '1', title: 'JavaScript - Lecture 1', date: '2025-09-21' },

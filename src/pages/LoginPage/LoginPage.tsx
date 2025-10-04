@@ -20,9 +20,10 @@ const LoginPage = () => {
     const { login, password } = credentials as { login: string; password: string };
 
     try {
-      const response = await fetch('http://45.90.216.217/auth', {
+      const response = await fetch('https://45.90.216.217/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        //credentials: 'include',
         body: JSON.stringify({ login, password }),
       });
 

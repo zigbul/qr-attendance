@@ -1,8 +1,11 @@
+export type Student = 'Student';
+
+export type Teacher = 'Teacher';
+
 export interface IUser {
   id: string;
-  login: string;
-  password: string;
-  type: 'student' | 'teacher';
+  fullName: string;
+  role: Student | Teacher;
 }
 
 export interface IClassItem {
