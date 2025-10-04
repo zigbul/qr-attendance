@@ -13,7 +13,7 @@ const ReportsPage = () => {
 
   const navigate = useNavigate();
 
-  const students = mockUsers.filter((user) => user.type === 'student');
+  const students = mockUsers.filter((user) => user.role === 'Student');
 
   const exportToExcel = () => {
     const rows: ReportRow[] = [];
@@ -35,7 +35,7 @@ const ReportsPage = () => {
           rows.push({
             Class: cls.title,
             Date: cls.date,
-            Student: student?.login ?? 'Unknown',
+            Student: student?.fullName ?? 'Unknown',
             Timestamp: new Date(attendance.timestamp).toLocaleString(),
           });
         });
@@ -86,7 +86,7 @@ const ReportsPage = () => {
                       return (
                         <tr key={attendance.studentId}>
                           <td className="reports-page__attendance-table-body-cell">
-                            {student?.login}
+                            {student?.fullName}
                           </td>
                           <td className="reports-page__attendance-table-body-cell">
                             {new Date(attendance.timestamp).toLocaleString()}
