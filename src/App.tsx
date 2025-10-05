@@ -5,7 +5,7 @@ import LessonsPage from './pages/LessonsPage';
 import ScanPage from './pages/ScanPage';
 //import ReportsPage from './pages/ReportsPage';
 import ProtectedRoute from './components/ProtectedRoute';
-import ScanConfirmPage from './pages/ScanConfirmPage';
+//import ScanConfirmPage from './pages/ScanConfirmPage';
 
 function App() {
   return (
@@ -28,14 +28,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/*<Route
           path="/scan/confirm"
           element={
             <ProtectedRoute allowedRoles={['Student']}>
               <ScanConfirmPage />
             </ProtectedRoute>
           }
-        />
+        />*/}
         {/*<Route
           path="/reports"
           element={

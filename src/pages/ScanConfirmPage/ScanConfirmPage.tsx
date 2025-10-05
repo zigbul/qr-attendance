@@ -1,19 +1,15 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+/*import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import './ScanConfirmPage.css';
 import useStore from '../../store';
-import type { IClassItem } from '../../types';
 
 const ScanConfirmPage = () => {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const classId = params.get('classId');
-  const mockClasses = useStore((state) => state.mockClasses);
 
   const currentUser = useStore((state) => state.currentUser);
   const addAttendance = useStore((state) => state.addAttendance);
-
-  const cls = mockClasses.find((c: IClassItem) => c.id === classId);
 
   const hasAttended = useStore((state) =>
     state.attendances.some(
@@ -79,3 +75,4 @@ const ScanConfirmPage = () => {
 };
 
 export default ScanConfirmPage;
+*/

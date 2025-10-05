@@ -1,3 +1,3 @@
-import ScanConfirmPage from './ScanConfirmPage';
+/*import ScanConfirmPage from './ScanConfirmPage';
 
-export default ScanConfirmPage;
+export default ScanConfirmPage;*/
