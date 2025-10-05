@@ -19,6 +19,8 @@ function App() {
   }, []);
 
   const checkAuth = async () => {
+    let failed = false;
+
     try {
       const response = await fetch('/api/auth-check', {
         method: 'GET',
@@ -45,9 +47,13 @@ function App() {
       }
     } catch (error) {
       console.error('Error checking authentication:', error);
-      navigate('/login');
+      failed = true;
     } finally {
       setIsChecking(false);
+
+      if (failed) {
+        navigate('/login');
+      }
     }
   };
 
