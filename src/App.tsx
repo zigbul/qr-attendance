@@ -25,7 +25,7 @@ function App() {
         credentials: 'include',
       });
 
-      if (response.ok === false) {
+      if (response.status !== 200) {
         throw new Error(response.statusText);
       }
 
