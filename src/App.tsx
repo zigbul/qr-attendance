@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
-import ClassesPage from './pages/ClassesPage';
+import LessonsPage from './pages/LessonsPage';
 import ScanPage from './pages/ScanPage';
-import ReportsPage from './pages/ReportsPage';
+//import ReportsPage from './pages/ReportsPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import ScanConfirmPage from './pages/ScanConfirmPage';
 
@@ -16,7 +16,7 @@ function App() {
           path="/classes"
           element={
             <ProtectedRoute allowedRoles={['Teacher']}>
-              <ClassesPage />
+              <LessonsPage />
             </ProtectedRoute>
           }
         />
@@ -36,14 +36,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/*<Route
           path="/reports"
           element={
             <ProtectedRoute allowedRoles={['Teacher']}>
               <ReportsPage />
             </ProtectedRoute>
           }
-        />
+        />*/}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </div>

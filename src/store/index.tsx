@@ -1,12 +1,10 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import { type IUser, type IClassItem, type IAttendanceRecord } from '../types';
+import type { IUser, IAttendanceRecord } from '../types';
 
 interface StoreState {
   currentUser: IUser | null;
-  mockUsers: IUser[];
-  mockClasses: IClassItem[];
   attendances: IAttendanceRecord[];
 }
 
@@ -20,14 +18,6 @@ type Store = StoreState & StoreActions;
 
 const initialState: StoreState = {
   currentUser: null,
-  mockUsers: [
-    { id: '1', fullName: 'student', role: 'Student' },
-    { id: '2', fullName: 'teacher', role: 'Teacher' },
-  ],
-  mockClasses: [
-    { id: '1', title: 'JavaScript - Lecture 1', date: '2025-09-21' },
-    { id: '2', title: 'GoLang - Lecture 2', date: '2025-09-22' },
-  ],
   attendances: [],
 };
 

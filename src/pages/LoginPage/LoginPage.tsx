@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import useStore from '../../store';
+
 import './LoginPage.css';
+import type { IUser } from '../../types';
 
 const LoginPage = () => {
   const [authError, setAuthError] = useState<boolean>(false);
@@ -20,17 +23,24 @@ const LoginPage = () => {
     const { login, password } = credentials as { login: string; password: string };
 
     try {
-      const response = await fetch('https://45.90.216.217/auth', {
+      const response = await fetch('api/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        //credentials: 'include',
+        credentials: 'include',
         body: JSON.stringify({ login, password }),
       });
 
       const data = await response.json();
 
       console.log(data);
-      console.log('cookie: ' + document.cookie);
+      console.log('cookie: ' + JSON.stringify(document.cookie));
+
+      const currentUser: IUser = {
+        fullName: data.fullName,
+        role: data.role,
+      };
+
+      useStore.getState().setCurrentUser(currentUser);
 
       if (data.role === 'Teacher') {
         navigate('/classes');
