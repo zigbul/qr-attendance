@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useZxing } from 'react-zxing';
-import { useNavigate } from 'react-router-dom';
 
 import type { IStudentInfo } from '../../types';
 import './ScanPage.css';
 
 const ScanPage = () => {
   const [student, setstudent] = useState<IStudentInfo | null>(null);
-  const navigate = useNavigate();
 
   const { ref } = useZxing({
     onDecodeResult(result) {
