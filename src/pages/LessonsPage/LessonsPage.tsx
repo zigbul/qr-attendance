@@ -6,7 +6,7 @@ import './LessonsPage.css';
 import type { ILessonInfo, ITeacherInfo } from '../../types';
 import useStore from '../../store';
 
-const ClassesPage = () => {
+const LessonsPage = () => {
   const [selectedClass, setSelectedClass] = useState<ILessonInfo | null>(null);
   const [teacher, setTeacher] = useState<ITeacherInfo | null>(null);
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ const ClassesPage = () => {
         <div className="classes-page__qrcode card">
           <h2 className="classes-page__qrcode-title">QR for {selectedClass.name_lesson}</h2>
           <QRCodeSVG
-            value={`${window.location.origin}/scan?classId=${selectedClass.id}`}
+            value={`${window.location.origin}/lessons/mark?token=${selectedClass.qr_token}`}
             size={200}
           />
         </div>
@@ -83,4 +83,4 @@ const ClassesPage = () => {
   );
 };
 
-export default ClassesPage;
+export default LessonsPage;
