@@ -70,7 +70,7 @@ const LessonsPage = () => {
         <div className="classes-page__qrcode card">
           <h2 className="classes-page__qrcode-title">QR for {selectedClass.name_lesson}</h2>
           <QRCodeSVG
-            value={`${window.location.origin}/lessons/mark?token=${selectedClass.qr_token}`}
+            value={`${window.location.origin}?token=${selectedClass.qr_token}`}
             size={200}
           />
         </div>

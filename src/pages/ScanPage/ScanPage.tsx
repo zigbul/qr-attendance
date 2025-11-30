@@ -13,10 +13,10 @@ const ScanPage = () => {
     onDecodeResult(result) {
       try {
         const url = new URL(result.getText());
-        const classId = url.searchParams.get('classId');
+        const token = url.searchParams.get('token');
 
-        if (classId) {
-          navigate(`/scan/confirm?classId=${classId}`);
+        if (token) {
+          navigate(`/lessons/mark?token=${token}`);
         } else {
           alert('Invalid QR code!');
         }
