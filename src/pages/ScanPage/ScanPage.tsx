@@ -16,7 +16,12 @@ const ScanPage = () => {
         const token = url.searchParams.get('token');
 
         if (token) {
-          navigate(`/lessons/mark?token=${token}`);
+          fetch(`api/lessons/mark?token=${token}`, {
+            method: 'POST',
+            credentials: 'include',
+          })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
         } else {
           alert('Invalid QR code!');
         }
