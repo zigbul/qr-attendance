@@ -15,7 +15,7 @@ const ScanPage = () => {
 
         if (token) {
           fetch(`api/lessons/mark?token=${token}`, {
-            method: 'POST',
+            method: 'GET',
             credentials: 'include',
           })
             .then((response) => response.json())
