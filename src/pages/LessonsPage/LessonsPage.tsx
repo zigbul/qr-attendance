@@ -45,8 +45,8 @@ const LessonsPage = () => {
     <section className="classes-page">
       <h1 className="classes-page__title">Welcome {teacher?.fullName}</h1>
 
-      <Link className="classes-page__link" to="/reports">
-        Go to Reports
+      <Link className="classes-page__link" to="/lessons/create">
+        Create Lesson
       </Link>
 
       <ul className="classes-page__list">
