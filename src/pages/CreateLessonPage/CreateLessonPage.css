@@ -1,0 +1,50 @@
+.create-lesson-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.create-lesson-page__card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.create-lesson-page__title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.create-lesson-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.create-lesson-page__form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-lesson-page__form-label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.create-lesson-page__form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.create-lesson-page__form-button {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
