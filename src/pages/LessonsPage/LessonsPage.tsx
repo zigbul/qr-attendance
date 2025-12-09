@@ -48,6 +48,9 @@ const LessonsPage = () => {
       <Link className="classes-page__link" to="/lessons/create">
         Create Lesson
       </Link>
+      <Link className="classes-page__link" to="/archive">
+        Archive
+      </Link>
 
       <ul className="classes-page__list">
         {teacher?.lessons &&
