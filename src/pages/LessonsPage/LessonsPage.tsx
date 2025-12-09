@@ -48,6 +48,9 @@ const LessonsPage = () => {
       <Link className="classes-page__link" to="/lessons/create">
         Create Lesson
       </Link>
+      <Link className="classes-page__link" to="/archive">
+        Archive
+      </Link>
 
       <ul className="classes-page__list">
         {teacher?.lessons &&
@@ -57,6 +60,7 @@ const LessonsPage = () => {
                 <h3 className="classes-page__class-title">{lesson.name_lesson}</h3>
                 <p className="classes-page__class-date">{lesson.date}</p>
               </div>
+              <Link to={`/lessons/${lesson.id}`}>Go to Lesson</Link>
               <button
                 className="classes-page__button btn btn-primary"
                 onClick={() => setSelectedClass(lesson)}>

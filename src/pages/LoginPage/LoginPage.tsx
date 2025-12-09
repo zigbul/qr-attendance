@@ -60,41 +60,36 @@ const LoginPage = () => {
   return (
     <section className="login-page container">
       <div className="login-page__card card">
-        <h1 className="login-page__title">Login</h1>
+        <h1 className="login-page__title">Вход</h1>
 
-        {authError && <p className="login-page__error-message">Invalid login or password</p>}
+        {authError && <p className="login-page__error-message">Неправильный логин или </p>}
 
         <form className="login-page__form" onSubmit={handleSubmit}>
           <div>
-            <label className="login-page__form-label" htmlFor="login">
-              Login
-            </label>
             <input
               className="login-page__form-input"
               type="text"
-              placeholder="Enter login"
+              placeholder="Введите логин"
               name="login"
             />
           </div>
           <div>
             <label className="login-page__form-label" htmlFor="password">
-              Password
+              Пароль
             </label>
             <input
               className="login-page__form-input"
               type="password"
-              placeholder="Enter password"
+              placeholder="Введите пароль"
               name="password"
             />
           </div>
-          <div>
-            <button
-              className="login-page__form-button btn btn-primary"
-              type="submit"
-              disabled={loading}>
-              {loading ? 'Submitting...' : 'Submit'}
-            </button>
-          </div>
+          <button
+            className="login-page__form-button btn btn-primary"
+            type="submit"
+            disabled={loading}>
+            →
+          </button>
         </form>
       </div>
     </section>

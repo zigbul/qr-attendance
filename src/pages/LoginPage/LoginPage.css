@@ -6,13 +6,20 @@
 }
 
 .login-page__card {
-  width: 100%;
-  max-width: 400px;
+  width: 360px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .login-page__title {
-  text-align: center;
-  margin-bottom: 1rem;
+  margin: 0 0 25px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  text-decoration: underline;
 }
 
 .login-page__error-message {
@@ -31,16 +38,28 @@
   display: block;
   margin-bottom: 0.25rem;
   font-weight: 500;
+  text-align: left;
 }
 
 .login-page__form-input {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
 }
 
 .login-page__form-button {
-  justify-self: center;
-  width: 100%;
+  width: 60px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: #5f8dfd;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 0.5;
+  color: #fff;
+  text-align: center;
+  align-self: flex-end;
 }
