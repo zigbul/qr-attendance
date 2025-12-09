@@ -74,6 +74,9 @@ const LoginPage = () => {
             />
           </div>
           <div>
+            <label className="login-page__form-label" htmlFor="password">
+              Пароль
+            </label>
             <input
               className="login-page__form-input"
               type="password"

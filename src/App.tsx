@@ -7,6 +7,7 @@ import ScanPage from './pages/ScanPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import CreateLessonPage from './pages/CreateLessonPage';
 import ArchivePage from './pages/ArchivePage';
+import LessonPage from './pages/LessonPage';
 //import ScanConfirmPage from './pages/ScanConfirmPage';
 
 function App() {
@@ -35,6 +36,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={['Teacher']}>
               <CreateLessonPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="lessons/:id"
+          element={
+            <ProtectedRoute allowedRoles={['Teacher']}>
+              <LessonPage />
             </ProtectedRoute>
           }
         />

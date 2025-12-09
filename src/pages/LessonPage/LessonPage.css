@@ -1,0 +1,27 @@
+.lesson-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+}
+
+.lesson-page__card {
+  width: 341;
+  height: 217;
+  padding: 40px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.lesson-page__archive-button {
+  width: 23px;
+  height: 23px;
+  background-image: url('../../images/Архив.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}

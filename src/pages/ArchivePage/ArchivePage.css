@@ -1,0 +1,31 @@
+.archive-page__title {
+  width: 133px;
+  height: 76px;
+  font-family: 'Inknut Antiqua';
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+.archive-page__export-button {
+  width: 25px;
+  height: 25px;
+  background-image: url('../../images/экспорт.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.archive-page__delete-button {
+  width: 28px;
+  height: 28px;
+  background-image: url('../../images/корзина.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.archive-page__back-link {
+  margin-top: 10px;
+}
