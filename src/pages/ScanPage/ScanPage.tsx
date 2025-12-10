@@ -19,7 +19,7 @@ const ScanPage = () => {
             credentials: 'include',
           })
             .then((response) => response.json())
-            .then((data) => console.log(data));
+            .then((data) => alert(data));
         } else {
           alert('Invalid QR code!');
         }
