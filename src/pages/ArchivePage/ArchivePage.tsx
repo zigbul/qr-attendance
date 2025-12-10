@@ -33,8 +33,18 @@ const ArchivePage = () => {
     }
   };
 
-  const onExportHandler = (id: string) => {
-    console.log(`Lesson ${id} exported`);
+  const onExportHandler = async (id: string) => {
+    try {
+      console.log(`Lesson ${id} exported`);
+
+      const response = await fetch(`/api/teacher/export?lessonId=${id}`);
+      console.log(response);
+      const data = await response.blob();
+
+      alert(data);
+    } catch (error) {
+      console.error('Error exporting lesson:', error);
+    }
   };
 
   return (
