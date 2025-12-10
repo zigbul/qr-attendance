@@ -20,8 +20,17 @@ const ArchivePage = () => {
       });
   }, []);
 
-  const onDeleteHandler = (id: string) => {
-    console.log(`Lesson ${id} deleted`);
+  const onDeleteHandler = async (id: string) => {
+    try {
+      const response = await fetch(`/api/archive/deleteLesson?lessonId=${id}`);
+      const data = await response.json();
+
+      alert(data.message);
+
+      setArchivedLessons((prevLessons) => prevLessons.filter((lesson) => lesson.id !== id));
+    } catch (error) {
+      console.error('Error deleting lesson:', error);
+    }
   };
 
   const onExportHandler = (id: string) => {
