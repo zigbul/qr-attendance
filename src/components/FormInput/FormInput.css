@@ -1,0 +1,8 @@
+.form-input {
+  width: 216px;
+  height: 25px;
+  padding: 15px 9px;
+  border: 0.5px solid lab(78.43% 0 -0.01);
+  border-radius: 9px;
+  background-color: #e7e7e74d;
+}

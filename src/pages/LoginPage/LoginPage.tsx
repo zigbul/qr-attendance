@@ -2,9 +2,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useStore from '../../store';
-
-import './LoginPage.css';
 import type { IUser } from '../../types';
+
+import Form from '../../components/Form';
+import FormTitle from '../../components/FormTitle';
+import FormInput from '../../components/FormInput';
+import FormBody from '../../components/FormBody';
+import SubmitButton from '../../components/SubmitButton/SubmitButton';
+import ErrorMessage from '../../components/ErrorMessage';
 
 const LoginPage = () => {
   const [authError, setAuthError] = useState<boolean>(false);
@@ -32,8 +37,9 @@ const LoginPage = () => {
 
       const data = await response.json();
 
-      console.log(data);
-      console.log('cookie: ' + JSON.stringify(document.cookie));
+      if (!response.ok) {
+        throw new Error();
+      }
 
       const currentUser: IUser = {
         fullName: data.fullName,
@@ -49,8 +55,7 @@ const LoginPage = () => {
       if (data.role === 'Student') {
         navigate('/scan');
       }
-    } catch (e) {
-      console.error('Error during authentication:', e);
+    } catch {
       setAuthError(true);
     } finally {
       setLoading(false);
@@ -58,40 +63,18 @@ const LoginPage = () => {
   };
 
   return (
-    <section className="login-page container">
-      <div className="login-page__card card">
-        <h1 className="login-page__title">Вход</h1>
+    <section className="container">
+      <Form>
+        <FormTitle>Вход</FormTitle>
 
-        {authError && <p className="login-page__error-message">Неправильный логин или </p>}
+        <ErrorMessage isError={authError}>Неправильный логин или пароль</ErrorMessage>
 
-        <form className="login-page__form" onSubmit={handleSubmit}>
-          <div>
-            <input
-              className="login-page__form-input"
-              type="text"
-              placeholder="Введите логин"
-              name="login"
-            />
-          </div>
-          <div>
-            <label className="login-page__form-label" htmlFor="password">
-              Пароль
-            </label>
-            <input
-              className="login-page__form-input"
-              type="password"
-              placeholder="Введите пароль"
-              name="password"
-            />
-          </div>
-          <button
-            className="login-page__form-button btn btn-primary"
-            type="submit"
-            disabled={loading}>
-            →
-          </button>
-        </form>
-      </div>
+        <FormBody handleSubmit={handleSubmit}>
+          <FormInput type="text" placeholder="Введите логин" name="login" />
+          <FormInput type="password" placeholder="Введите пароль" name="password" />
+          <SubmitButton loading={loading} />
+        </FormBody>
+      </Form>
     </section>
   );
 };

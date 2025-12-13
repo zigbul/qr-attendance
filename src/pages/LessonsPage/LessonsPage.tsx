@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
-import { QRCodeSVG } from 'qrcode.react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import './LessonsPage.css';
-import type { ILessonInfo, ITeacherInfo } from '../../types';
+import type { ITeacherInfo } from '../../types';
 import useStore from '../../store';
 
 const LessonsPage = () => {
-  const [selectedClass, setSelectedClass] = useState<ILessonInfo | null>(null);
   const [teacher, setTeacher] = useState<ITeacherInfo | null>(null);
   const navigate = useNavigate();
 
@@ -42,7 +40,7 @@ const LessonsPage = () => {
   }, []);
 
   return (
-    <section className="classes-page">
+    <section className="container">
       <h1 className="classes-page__title">Welcome {teacher?.fullName}</h1>
 
       <Link className="classes-page__link" to="/lessons/create">
@@ -61,24 +59,9 @@ const LessonsPage = () => {
                 <p className="classes-page__class-date">{lesson.date}</p>
               </div>
               <Link to={`/lessons/${lesson.id}`}>Go to Lesson</Link>
-              <button
-                className="classes-page__button btn btn-primary"
-                onClick={() => setSelectedClass(lesson)}>
-                Generate QRCode
-              </button>
             </li>
           ))}
       </ul>
-
-      {selectedClass && (
-        <div className="classes-page__qrcode card">
-          <h2 className="classes-page__qrcode-title">QR for {selectedClass.name_lesson}</h2>
-          <QRCodeSVG
-            value={`${window.location.origin}?token=${selectedClass.qr_token}`}
-            size={200}
-          />
-        </div>
-      )}
 
       <button className="classes-page__logout-button btn btn-secondary" onClick={handleLogout}>
         Logout

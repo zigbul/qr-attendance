@@ -1,0 +1,9 @@
+.form-title {
+  align-self: center;
+  padding: 0 3px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #5c87f6;
+  color: #262626;
+  font-size: 18px;
+  font-weight: 500;
+}

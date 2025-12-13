@@ -36,3 +36,14 @@ export interface ReportRow {
   Student: string;
   Timestamp: string;
 }
+
+export interface FormProps {
+  children: React.ReactNode | string;
+  className?: string;
+}
+
+export interface FormInputProps {
+  type: string;
+  placeholder: string;
+  name: string;
+}

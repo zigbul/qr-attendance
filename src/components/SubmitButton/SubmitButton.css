@@ -1,0 +1,19 @@
+.submit-button {
+  width: 60px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: #5f8dfd;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 0.5;
+  color: #fff;
+  text-align: center;
+  align-self: flex-end;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.submit-button:hover {
+  background: #3a66f5;
+  transform: translateY(-1px);
+}
