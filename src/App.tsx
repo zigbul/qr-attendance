@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route
-          path="/classes"
+          path="/lessons"
           element={
             <ProtectedRoute allowedRoles={['Teacher']}>
               <LessonsPage />
@@ -48,7 +48,7 @@ function App() {
           }
         />
         <Route
-          path="/archive"
+          path="/lessons/archive"
           element={
             <ProtectedRoute allowedRoles={['Teacher']}>
               <ArchivePage />

@@ -1,0 +1,42 @@
+.lesson-card {
+  width: 341px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 25px 25px 25px 40px;
+  flex: auto;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  color: #262626;
+}
+
+.lesson-card--title {
+  justify-self: flex-start;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #5c87f6;
+  font-weight: 10px;
+}
+
+.lesson-card--date {
+  font-weight: 10px;
+}
+
+.lesson-card--link-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 19px;
+}
+
+.lesson-card--link-subtitle {
+  color: #000000;
+  opacity: 0.5;
+}
+
+.lesson-card--link {
+  padding: 2px 18px;
+  background-color: #5c87f6;
+  color: #ffffff;
+  border-radius: 9px;
+}

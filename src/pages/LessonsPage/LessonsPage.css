@@ -1,16 +1,3 @@
-.classes-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-}
-
-.classes-page__title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
 .classes-page__list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -22,6 +9,7 @@
 
 .classes-page__list-item {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
   gap: 1rem;

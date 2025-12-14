@@ -10,13 +10,32 @@ body {
   line-height: 1.5;
 }
 
+.page-container {
+  display: flex;
+  width: 100vw;
+}
+
+.page-title {
+  align-self: flex-start;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.page-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 59px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  gap: 1rem;
+  padding: 133px 172px 91px 88px;
+  gap: 39px;
+  flex: 1;
 }
 
 h1,
@@ -42,9 +61,4 @@ h3 {
 }
 h4 {
   font-size: 1.125rem;
-}
-
-p {
-  margin-bottom: 1rem;
-  color: var(--color-text-light);
 }

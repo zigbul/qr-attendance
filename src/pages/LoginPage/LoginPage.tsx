@@ -49,7 +49,7 @@ const LoginPage = () => {
       useStore.getState().setCurrentUser(currentUser);
 
       if (data.role === 'Teacher') {
-        navigate('/classes');
+        navigate('/lessons');
       }
 
       if (data.role === 'Student') {

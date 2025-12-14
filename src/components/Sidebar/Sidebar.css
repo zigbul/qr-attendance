@@ -1,0 +1,35 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  max-width: 365px;
+  padding: 66px 55px;
+  background-color: #ffffff;
+}
+
+.sidebar-fullname {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #5c87f6;
+  color: #262626;
+  line-height: 1.5;
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-list-item {
+  font-size: 16px;
+  font-weight: 500;
+  color: #262626;
+}
+
+.sidebar-list-item--active {
+  color: #7096f7;
+}
+
+.sidebar-logout {
+  margin-top: auto;
+}
