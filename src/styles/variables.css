@@ -10,7 +10,7 @@
   --color-success: #22c55e;
   --color-error: #ef4444;
 
-  --font-base: 'Inknut Antiqua';
+  --font-base: 'Inknut Antiqua', 'sans-serif';
 
   --radius-sm: 4px;
   --radius-md: 8px;

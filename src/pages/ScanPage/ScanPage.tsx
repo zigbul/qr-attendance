@@ -1,35 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useZxing } from 'react-zxing';
 
 import type { IStudentInfo } from '../../types';
-import './ScanPage.css';
+
+import LogoutButton from '../../components/LogoutButton';
+import Scanner from '../../components/Scanner';
 
 const ScanPage = () => {
   const [student, setstudent] = useState<IStudentInfo | null>(null);
-
-  const { ref } = useZxing({
-    onDecodeResult(result) {
-      try {
-        const url = new URL(result.getText());
-        const token = url.searchParams.get('token');
-
-        if (token) {
-          fetch(`api/lessons/mark?token=${token}`, {
-            method: 'GET',
-            credentials: 'include',
-          })
-            .then((response) => response.json())
-            .then((data) => alert(data.message));
-        } else {
-          alert('Invalid QR code!');
-        }
-      } catch (error) {
-        if (error instanceof Error) {
-          alert(`Error: ${error.message}`);
-        }
-      }
-    },
-  });
 
   useEffect(() => {
     fetch('api/student/getInfo', {
@@ -41,8 +18,6 @@ const ScanPage = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Fetched teacher data:', data);
-
         const student: IStudentInfo = {
           fullName: data.fullname,
           role: 'Student',
@@ -57,12 +32,14 @@ const ScanPage = () => {
   }, []);
 
   return (
-    <section className="scan-page container">
-      <h1 className="scan-page__title">Scan QR Code, {student?.fullName}</h1>
-      <div className="scan-page__card card">
-        <video className="scan-page__scaner" ref={ref} />
-        <p className="scan-page__hint">Point your camera at QR code to mark attendance.</p>
+    <section className="container">
+      <h2>{student?.fullName}</h2>
+      <div className="form">
+        <h1 className="form-title">Сканировать QR</h1>
+        <Scanner />
+        <p>Окно для сканирования QR кода</p>
       </div>
+      <LogoutButton />
     </section>
   );
 };

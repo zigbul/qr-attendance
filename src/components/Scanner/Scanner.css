@@ -1,0 +1,8 @@
+.scanner {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  border: 3px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
