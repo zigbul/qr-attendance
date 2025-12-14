@@ -41,11 +41,14 @@ const LessonsPage = () => {
           {teacher?.lessons &&
             teacher.lessons.map((lesson) => (
               <LessonCard
+                id={lesson.id}
                 name={lesson.name_lesson}
                 type={lesson.type_les}
                 date={lesson.date}
-                id={lesson.id}
                 key={lesson.id}
+                path={`/lessons/${lesson.id}`}
+                text="Перейти к уроку"
+                fullname={teacher?.fullName}
               />
             ))}
         </ul>

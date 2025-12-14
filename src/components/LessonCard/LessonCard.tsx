@@ -1,18 +1,9 @@
 import { Link } from 'react-router-dom';
 
 import './LessonCard.css';
+import type { ILessonCardData } from '../../types';
 
-const LessonCard = ({
-  name,
-  date,
-  type,
-  id,
-}: {
-  name: string;
-  date: string;
-  type: string;
-  id: string;
-}) => {
+const LessonCard = ({ name, date, type, path, text, fullname }: ILessonCardData) => {
   return (
     <li className="lesson-card">
       <div>
@@ -21,8 +12,8 @@ const LessonCard = ({
         <p className="lesson-card--type">Тип: {type}</p>
       </div>
       <div className="lesson-card--link-wrapper">
-        <p className="lesson-card--link-subtitle">Открыть урок</p>
-        <Link className="lesson-card--link" to={`/lessons/${id}`}>
+        <p className="lesson-card--link-subtitle">{text}</p>
+        <Link className="lesson-card--link" to={path} state={{ fullname }}>
           →
         </Link>
       </div>

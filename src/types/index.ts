@@ -47,3 +47,14 @@ export interface FormInputProps {
   placeholder: string;
   name: string;
 }
+
+export interface ILessonCardData {
+  name: string;
+  type: string;
+  date: string;
+  key: string;
+  path: string;
+  text: string;
+  fullname: string;
+  id: string;
+}

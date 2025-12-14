@@ -1,0 +1,23 @@
+.lesson-card-with-export--button-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+}
+
+.lesson-card-with-export--button {
+  width: 23px;
+  height: 23px;
+  margin-right: auto;
+  background-image: url('../../images/Архив.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.lesson-card-with-export--export-button {
+  background-image: url('../../images/экспорт.svg');
+}
+
+.lesson-card-with-export--delete-button {
+  background-image: url('../../images/корзина.svg');
+}

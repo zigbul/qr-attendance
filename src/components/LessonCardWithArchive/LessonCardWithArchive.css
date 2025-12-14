@@ -1,0 +1,15 @@
+.lesson-card-with-archive--link-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+}
+
+.lesson-card-with-archive--button {
+  width: 23px;
+  height: 23px;
+  margin-right: auto;
+  background-image: url('../../images/Архив.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
