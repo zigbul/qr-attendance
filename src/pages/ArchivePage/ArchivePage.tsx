@@ -7,7 +7,7 @@ import Sidebar from '../../components/Sidebar';
 
 const ArchivePage = () => {
   const [archivedLessons, setArchivedLessons] = useState<
-    { id: string; name_lesson: string; date: string }[]
+    { id: string; name_lesson: string; date: string; type_les: string }[]
   >([]);
 
   const [fullName, setFullName] = useState<string>('');
@@ -79,25 +79,25 @@ const ArchivePage = () => {
   return (
     <section className="page-container">
       <div className="container">
-        <h1 className="page-title" style={{ marginLeft: '55px' }}>
-          Архив
-        </h1>
-        <ul className="classes-page__list">
+        <h1 className="page-title">Архив</h1>
+        <ul className="page-list">
           {archivedLessons.map((lesson) => (
-            <li className="classes-page__list-item" key={lesson.id}>
+            <li className="lesson-card" key={lesson.id}>
               <div>
-                <div style={{ display: 'flex', gap: '5px' }}>
-                  <h3 className="classes-page__class-title">{lesson.name_lesson}</h3>
+                <h3 className="classes-page__class-title">{lesson.name_lesson}</h3>
+                <p className="lesson-card--date">Дата: {lesson.date}</p>
+                <p className="lesson-card--type">Тип: {lesson.type_les}</p>
+                <div className="lesson-card--link-wrapper">
                   <button
                     className="archive-page__export-button"
                     onClick={() => onExportHandler(lesson.id)}
                   />
+
+                  <button
+                    className="archive-page__delete-button"
+                    onClick={() => onDeleteHandler(lesson.id)}
+                  />
                 </div>
-                <p className="classes-page__class-date">{lesson.date}</p>
-                <button
-                  className="archive-page__delete-button"
-                  onClick={() => onDeleteHandler(lesson.id)}
-                />
               </div>
             </li>
           ))}
