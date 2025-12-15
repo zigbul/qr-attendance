@@ -4,6 +4,7 @@ import './LessonsPage.css';
 import type { ITeacherInfo } from '../../types';
 import Sidebar from '../../components/Sidebar';
 import LessonCard from '../../components/LessonCard';
+import useStore from '../../store';
 
 const LessonsPage = () => {
   const [teacher, setTeacher] = useState<ITeacherInfo | null>(null);
@@ -26,6 +27,7 @@ const LessonsPage = () => {
           role: 'Teacher',
         };
 
+        useStore.getState().setFullName(teacher.fullName);
         setTeacher(teacher);
       })
       .catch((error) => {

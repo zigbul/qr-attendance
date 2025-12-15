@@ -1,0 +1,12 @@
+.form-select {
+  width: 216px;
+  height: 25px;
+  padding: 0 9px;
+  border: 0.5px solid lab(78.43% 0 -0.01);
+  border-radius: 9px;
+  background-color: #e7e7e74d;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
